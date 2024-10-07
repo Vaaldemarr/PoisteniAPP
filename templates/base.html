@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+    {% if 'persons' in request.endpoint or 'policies' in request.endpoint %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='persons.css') }}">
+    {% endif %}
+    {% if 'new_person' in request.endpoint or 'new2_policy' in request.endpoint or 'edit_person' in request.endpoint or 'edit_policy' in request.endpoint %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='new_person.css') }}">
+    {% endif %}
+    {% if 'person' in request.endpoint %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='person.css') }}">
+    {% endif %}
+    {% if 'add_person_policy' in request.endpoint %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='person_policy.css') }}">
+    {% endif %}
+    <title>PojištěníApp</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">PojištěníApp</a></li>
+                <li><a href="{{ url_for('persons') }}" 
+                    class="{% if 'persons' not in request.endpoint %}inactive{% endif %}">Pojištěnci</a></li>
+                <li><a href="{{ url_for('policies') }}" 
+                       class="{% if 'policies' not in request.endpoint %}inactive{% endif %}">Pojištění</a></li>
+                <li><a href="{{ url_for('show_persons') }}" class="unavailable">Události</a></li>
+                <li><a href="{{ url_for('about_project') }}" 
+                       class="{% if 'about_project' not in request.endpoint %}inactive{% endif %}">O aplikaci</a></li>
+            </ul>
+        </nav>
+        <div class="login">
+            <a href="#" class="inactive">Přihlásit</a>
+            <a href="#" class="inactive">Registrovat</a>
+        </div>
+    </header>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+    <footer>
+        <p>PojištěníApp © 2024</p>
+    </footer>
+</body>
+</html>

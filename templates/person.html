@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="person-container">
+    <div class="person-main-container">
+        <div class="person-image-container">
+            <img src="{{ url_for('static', filename='images/user.jpg') }}" alt="User Image">
+        </div>
+        <div class="person-info-container">
+            <div class="person-header">
+                <h2>{{ person.first_name }} {{ person.last_name }}</h2>
+            </div>
+            <div class="person-details">
+                <div class="person-column-left">
+                    <p>{{ person.street }}</p>
+                    <p>{{ person.city }}</p>
+                    <p>{{ person.postal_code }}</p>
+                </div>
+                <div class="person-column-right">
+                    <p>{{ person.email }}</p>
+                    <p>{{ person.phone }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <h3>Sjednaná pojištění</h3>
+    <table class="insurance-table">
+        <thead>
+            <tr>
+                <th>Pojištění</th>
+                <th>Částka</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for policy_id, policy in policies %}
+            <tr>
+                <td>{{ policy.title }}</td>
+                <td>{{ policy.insured_amount }} Kč</td>
+                <td>
+                    <a href="{{ url_for('delete_person_policy', person_id=person_id, policy_id=policy_id) }}" class="btn btn-delete">Odstranit</a>
+                    <a href="{{ url_for('edit_policy', policy_id=policy_id, source=person_id, page=0) }}" class="btn btn-edit">Editovat</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="action-buttons">
+        <a href="{{ url_for('add_person_policy', person_id=person_id) }}" class="btn btn-add">Přidat pojištění</a>
+        <a href="{{ url_for('edit_person', person_id=person_id, source='person', page=0) }}" class="btn btn-edit">Editovat pojištěnce</a>
+        <a href="{{ url_for('delete_person', person_id=person_id) }}" class="btn btn-delete">Odstranit pojištěnce</a>
+    </div>
+</div>
+{% endblock %}

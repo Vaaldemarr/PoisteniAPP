@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="alert" {% if err_msg == None %}style="display:none"{% endif %}>
+    <p>{{ err_msg }}</p>
+</div>
+<div class="form-container">
+    <h2>Nový pojištěnec</h2>
+    <form method="post" action="{{ url_for('new_person') }}">
+        <div class="form-row">
+            <div class="form-group">
+                <label for="first_name">Jméno</label>
+                <input type="text" id="first_name" name="first_name" value="{{ person.first_name }}" required>
+            </div>
+            <div class="form-group">
+                <label for="last_name">Příjmení</label>
+                <input type="text" id="last_name" name="last_name" value="{{ person.last_name }}" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" value="{{ person.email }}" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Telefon</label>
+                <input type="tel" id="phone" name="phone" value="{{ person.phone }}" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="street">Ulice a číslo popisné</label>
+                <input type="text" id="street" name="street" value="{{ person.street }}" required>
+            </div>
+            <div class="form-group">
+                <label for="city">Město</label>
+                <input type="text" id="city" name="city" value="{{ person.city }}" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <!-- Пустое пространство -->
+            </div>
+            <div class="form-group">
+                <label for="postal_code">PSČ</label>
+                <input type="text" id="postal_code" name="postal_code" value="{{ person.postal_code }}" required>
+            </div>
+        </div>
+        <div class="submit-button">
+            <button type="submit" class="btn">Uložit</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,113 @@
+.person-container {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+/* Основной блок, задаем ширину 80% */
+.person-main-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 0 auto; /* Центрирование основного блока */
+}
+
+/* Контейнер для изображения */
+.person-image-container {
+    margin-right: 20px; /* Отступ между картинкой и блоком информации */
+}
+
+.person-image-container img {
+    width: 150px; /* Ширина картинки в пикселях */
+    height: auto; /* Сохранение пропорций картинки */
+}
+
+/* Контейнер для информации */
+.person-info-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* Ширина основного блока информации */
+}
+
+/* Блок заголовка */
+.person-header {
+    width: 100%; /* Ширина заголовка = ширина блока информации */
+    margin: 0px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.person-header h2{
+    height: fit-content;
+    margin: 0px;
+    padding: 10px 0px;
+}
+
+/* Блок для надписей */
+.person-details {
+    display: flex;
+    justify-content: space-between; /* Равномерное распределение колонок */
+    width: 100%;
+    padding-top: 10px;
+}
+
+/* Левая колонка с тремя надписями */
+.person-column-left {
+    width: 50%;
+}
+
+/* Правая колонка с двумя надписями */
+.person-column-right {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.person-column-left p, .person-column-right p {
+    margin: 5px 0;
+}
+
+.insurance-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.insurance-table th, .insurance-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.insurance-table th {
+    background-color: #f2f2f2;
+}
+
+.btn {
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+.btn-add {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-edit {
+    background-color: #ffc107;
+    color: white;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}

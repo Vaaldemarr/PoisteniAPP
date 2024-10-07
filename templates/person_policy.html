@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>Přidat pojištění k {{ person_name }}</h1>
+
+    <!-- Flex-контейнер для выпадающего списка и полей ввода -->
+    <form method="post" action="{{ url_for('add_person_policy', person_id=person_id) }}">
+    <div class="policy-form">
+        <!-- Выпадающий список -->
+        <div class="form-group">
+            <label for="policySelect">Pojištění</label>
+            <select id="policySelect" name="policySelect" class="form-control" onchange="fillForm()" required>
+                <option value="">Vyberte pojištění</option>
+                {% for p_id, title in select_data %}
+                    <option value="{{ p_id }}">{{ title }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <!-- Поля ввода -->
+
+        <div class="input-block">
+            <div>
+                <label for="insured_amount">Částka</label>
+                <input type="text" id="insured_amount" name="insured_amount" readonly>
+            </div>
+            <div>
+                <label for="insured_object">Předmět pojištění</label>
+                <input type="text" id="insured_object" name="insured_object" readonly>
+            </div>
+            <div>
+                <label for="start_date">Platnost od</label>
+                <input type="datetime-local" id="start_date" name="start_date" readonly>
+            </div>
+            <div>
+                <label for="end_date">Platnost do</label>
+                <input type="datetime-local" id="end_date" name="end_date" readonly>
+            </div>
+        </div>
+
+        <!-- Кнопка "Uložit" -->
+        <div class="submit-button">
+            <button type="submit" class="btn">Přidat</button>
+        </div>
+    </div>
+    </form>
+</div>
+
+<!-- Подключаем скрипт для подстановки значений -->
+<script>
+    // Массив данных для подстановки значений из policies
+    var policiesData = {{ policies|tojson }};
+
+    // Функция для подстановки значений в поля ввода при выборе из списка
+    function fillForm() {
+        var select = document.getElementById("policySelect");
+        var index = select.selectedIndex;
+
+        if (index>0) {
+            var policy = policiesData[index-1];
+            document.getElementById("insured_amount").value = policy.insured_amount;
+            document.getElementById("insured_object").value = policy.insured_object;
+            document.getElementById("start_date").value = policy.start_date;
+            document.getElementById("end_date").value = policy.end_date;
+        } else {
+            // Очищаем поля, если ничего не выбрано
+            document.getElementById("insured_amount").value = '';
+            document.getElementById("insured_object").value = '';
+            document.getElementById("start_date").value = '';
+            document.getElementById("end_date").value = '';
+        }
+    }
+
+</script>
+{% endblock %}

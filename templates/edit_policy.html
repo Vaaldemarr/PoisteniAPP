@@ -1,0 +1,42 @@
+<!-- new_person.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="alert" {% if err_msg == None %}style="display:none"{% endif %}>
+    <p>{{ err_msg }}</p>
+</div>
+<div class="form-container">
+    <h2>Editovat pojištění</h2>
+    <form method="post" action="{{ url_for('edit_policy', policy_id=policy_id, source=source, page=page) }}">
+        <div class="form-row">
+            <div class="form-group">
+                <label for="title">Jméno</label>
+                <input type="text" id="title" name="title" value="{{ policy.title }}" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="insured_amount">Částka</label>
+                <input type="number" min="1.00" step="1.00" id="insured_amount" name="insured_amount" value="{{ policy.insured_amount }}" required>
+            </div>
+            <div class="form-group">
+                <label for="insured_object">Předmět pojištění</label>
+                <input type="text" id="insured_object" name="insured_object" value="{{ policy.insured_object }}" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="start_date">Platnost od</label>
+                <input type="datetime-local" id="start_date" name="start_date" value="{{ policy.start_date }}" required>
+            </div>
+            <div class="form-group">
+                <label for="end_date">Platnost do</label>
+                <input type="datetime-local" id="end_date" name="end_date" value="{{ policy.end_date }}" required>
+            </div>
+        </div>
+        <div class="submit-button">
+            <button type="submit" class="btn">Uložit</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

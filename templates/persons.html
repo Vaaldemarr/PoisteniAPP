@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="alert" {% if not request.args.get('saved') %}style="display:none"{% endif %}>
+    {{ saved_text }}
+</div>
+<h2>Pojistěnci</h2>
+<div class="centered">
+    <a href="{{ url_for('new_person') }}" class="btn">Nový pojištěnec</a>
+</div>
+<table>
+    <thead>
+        <tr>
+            <th>Jméno</th>
+            <th>Bydliště</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for person, address, person_id in persons %}
+        <tr>
+            <td><a href="{{ url_for('person', person_id=person_id) }}">{{ person }}</a></td>
+            <td>{{ address }}</td>
+            <td>
+                <a href="{{ url_for('delete_person', person_id=person_id) }}" class="btn danger">Odstranit</a>
+                <a href="{{ url_for('edit_person', person_id=person_id, source='persons', page=page) }}" class="btn warning">Editovat</a>
+            </td>
+        </tr>
+        {% endfor %}
+        {% for i in range(3 - persons|length) %}
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>
+                <a href="#" class="btn disabled">Odstranit</a>
+                <a href="#" class="btn disabled">Editovat</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div class="pagination">
+    <form method="get" action="{{ url_for('persons') }}">
+        <button 
+            type="submit" 
+            name="page" 
+            value="{{ page-1 }}" 
+            class="btn"
+            {% if page == 1 %}disabled{% endif %}>
+            Předchozí
+        </button>
+
+        {% for i in range(1, total_pages + 1) %}
+            <button 
+                type="submit" 
+                name="page" 
+                value="{{ i }}" 
+                class="btn {% if i == page %}active{% endif %}">
+                {{ i }}
+            </button>
+        {% endfor %}
+
+        <button 
+            type="submit" 
+            name="page" 
+            value="{{ page+1 }}" 
+            class="btn"
+            {% if page == total_pages %}disabled{% endif %}>
+            Další
+        </button>
+    </form>
+</div>
+{% endblock %}

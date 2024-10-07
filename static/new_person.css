@@ -1,0 +1,67 @@
+.form-container {
+    max-width: 90%; /* Ширина контейнера 80% */
+    /* padding: 10px; */
+    background-color: inherit; /* Цвет фона наследуется от базового стиля */
+    border-radius: 8px;
+}
+
+.form-container h1 {
+    text-align: left; /* Заголовок также прижат к левому краю */
+    margin-bottom: 20px;
+}
+
+.form-row {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    /* margin-right: 25px; */
+    width: 30%; /* Поля ввода занимают по 48% от ширины строки для создания двух колонок */
+}
+
+.form-group label {
+    margin-left: 5px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    width: 90%; /* Поля ввода занимают всю ширину родительского контейнера */
+}
+
+.submit-button {
+    display: flex;
+    justify-content: center; /* Кнопка центрируется по горизонтали */
+    margin-top: 20px;
+}
+
+.submit-button .btn {
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    min-width: 100px; /* Минимальная ширина кнопки для сохранения размеров */
+    background-color: #007bff;
+    color: white;
+    border: none;
+}
+
+.submit-button .btn:hover {
+    background-color: #0056b3;
+}
+
+.alert {
+    background-color: #f0f0d8;
+    color: #c72525;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}

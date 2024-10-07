@@ -1,0 +1,61 @@
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.policy-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-block {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Отступ между полями ввода */
+    margin-top: 20px; /* Отступ сверху для отделения от выпадающего списка */
+}
+
+.input-block div {
+    flex: 1 1 45%; /* Поля ввода занимают 45% ширины родителя */
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.submit-button {
+    display: flex;
+    justify-content: center; /* Кнопка центрируется по горизонтали */
+    margin-top: 20px;
+}
+
+.submit-button .btn {
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    min-width: 100px; /* Минимальная ширина кнопки для сохранения размеров */
+    background-color: #007bff;
+    color: white;
+    border: none;
+}
+
+.submit-button .btn:hover {
+    background-color: #0056b3;
+}
